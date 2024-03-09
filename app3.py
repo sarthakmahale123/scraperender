@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-app = Flask(__name__)
+app3 = Flask(__name__)
 
 # Function to scrape data from Flipkart
 def scrape_flipkart():
@@ -19,7 +19,7 @@ def scrape_flipkart():
         # Iterate over multiple pages
         for page_number in range(1, 6):  # Scraping first 5 pages, adjust as needed
             # Navigate to the webpage
-            driver.get(f"https://www.flipkart.com/search?q=air+conditioners&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page={page_number}")
+            driver.get(f"https://www.flipkart.com/search?q=laptops&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&page={page_number}")
 
             # Wait for the product elements to be present
             products = WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.XPATH, "//div[contains(@class, '_1AtVbE')]")))
@@ -70,7 +70,7 @@ def scrape_croma():
 
     try:
         # Navigate to the webpage
-        driver.get("https://www.croma.com/searchB?q=air%20conditioners%3Arelevance&text=air%20conditioners")
+        driver.get("https://www.croma.com/searchB?q=laptops%3Arelevance&text=laptops")
 
         # Wait for the product elements to be present
         products = WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.XPATH, "//li[contains(@class, 'product-item')]")))
@@ -112,7 +112,7 @@ def scrape_croma():
 
     return scraped_data
 
-@app.route('/scrape_products')
+@app3.route('/scrape_products')
 def scrape_products():
     # Scrape data from Flipkart
     flipkart_data = scrape_flipkart()
@@ -129,4 +129,4 @@ def scrape_products():
     return json_data
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app3.run(debug=True)
